@@ -2,8 +2,13 @@
 
 Playing around with the JVM.
 
-## Prerequisites
+## Prerequisites and assumptions
 
+You'll need [Homebrew](https://brew.sh/) installed ahead of running these examples. You might also need Java, but I think the install steps for each guide must do that for you.
+
+You can assume I was using [Atom editor](https://atom.io/) unless the guide specifically mentions an alternative.
+
+I'm assuming you're using a Mac in these guides, sorry Linux and Windows folk!
 
 ## Microservices
 
