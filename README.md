@@ -17,3 +17,7 @@ I'm assuming you're using a Mac in these guides, sorry Linux and Windows folk!
 - Java from CLI: [Using Maven and Spring Boot from CLI](microservices/using-maven-and-spring-boot)
 - Kotlin from CLI: [Using Kotlin Maven and Spring Boot from CLI](microservices/using-kotlin-maven-and-spring-boot)
 - Scala: [Using Scalatra](microservices/using-scalatra)
+
+## Clean Architecture
+
+- Clojure: [Using Clojure](clean-architecture/using-clojure)
