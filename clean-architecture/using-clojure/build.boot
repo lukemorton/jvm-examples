@@ -10,6 +10,15 @@
 
 (require '[adzerk.boot-test :as boot-test])
 
+(deftask build-cli
+  "Build CLI delivery mechanism"
+  []
+  (comp
+        (aot :namespace '#{eng-bot.cli})
+        (uber)
+        (jar :file "eng-bot.jar" :main 'eng-bot.cli)
+        (target)))
+
 (deftask test
   "Run full test suite in watch mode"
   []
