@@ -16,7 +16,7 @@
    {:name "eng-ruby"}])
 
 (defn- fake-post-message
-  [& {:keys [channel text]}]
+  [channel text]
   true)
 
 (deftest exec-returns-true-on-success
@@ -32,5 +32,5 @@
 
 (deftest exec-calls-post-message
   (let [fake-post-message-spy (spy fake-post-message)]
-    (sc/exec fake-empty-list-channels fake-post-message-spy)
-    (is (called-with? fake-post-message-spy :channel "eng-test" :text []))))
+    (sc/exec fake-list-channels fake-post-message-spy)
+    (is (called-with? fake-post-message-spy "eng-test" "eng-general, eng-java, eng-dotnet, eng-ruby"))))
