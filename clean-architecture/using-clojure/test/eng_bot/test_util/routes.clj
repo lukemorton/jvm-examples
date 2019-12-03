@@ -10,3 +10,8 @@
 (def slack-channels
   {"/channels.list" (mocked-slack-channels [{:name_normalized "announcements"}
                                             {:name_normalized "eng-general"}])})
+
+(def slack-post-message
+  {"/chat.postMessage" {:status 200
+                        :content-type "application/json"
+                        :body (json/generate-string {:ok true})}})
