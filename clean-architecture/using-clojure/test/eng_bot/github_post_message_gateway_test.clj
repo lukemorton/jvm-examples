@@ -9,4 +9,4 @@
 (deftest post-message-test
   (stub-http/with-routes!
     routes/slack-post-message
-    (is (= true (g/post-message {:api-url uri :token "test"} :channel "eng-test" :text "HeY!")))))
+    (is (= true (g/post-message {:api-url uri :token "test"} "eng-test" "HeY!")))))

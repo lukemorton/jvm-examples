@@ -2,7 +2,7 @@
   (:require [clj-slack.chat :as slack-chat]))
 
 (defn post-message
-  [connection & {:keys [channel text]}]
+  [connection channel text]
   (let [response (slack-chat/post-message connection channel text)]
     (if (get response :ok)
       true
