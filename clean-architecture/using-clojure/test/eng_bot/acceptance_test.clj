@@ -12,3 +12,10 @@
       [factory/*slack-connection* {:api-url uri :token "test"}]
       (is (not (empty (get (get (factory/list-channels) 0) :name))))
       (is (= "eng-general" (get (get (factory/list-channels) 0) :name))))))
+
+(deftest share-channels-posts-list-of-channels
+  (stub-http/with-routes!
+    routes/slack-channels-and-post-message
+    (binding
+      [factory/*slack-connection* {:api-url uri :token "test"}]
+      (is (= true (factory/share-channels))))))

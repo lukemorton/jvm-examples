@@ -15,3 +15,6 @@
   {"/chat.postMessage" {:status 200
                         :content-type "application/json"
                         :body (json/generate-string {:ok true})}})
+
+(def slack-channels-and-post-message
+  (merge slack-channels slack-post-message))
