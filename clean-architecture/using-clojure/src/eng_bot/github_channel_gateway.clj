@@ -8,4 +8,4 @@
 (defn all-channels
   [connection]
   (let [channels (get (slack-channels/list connection) :channels)]
-   (map build-channel-hash channels)))
+    (map build-channel-hash channels)))
