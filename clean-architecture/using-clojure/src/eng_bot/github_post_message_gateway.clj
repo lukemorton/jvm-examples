@@ -3,7 +3,8 @@
 
 (defn post-message
   [connection channel text]
-  (let [response (slack-chat/post-message connection channel text)]
+  ; {:link_names true}
+  (let [response (slack-chat/post-message connection channel text {:link_names "true"})]
     (if (get response :ok)
       true
       (throw (ex-info "Error posting message to Slack" response)))))

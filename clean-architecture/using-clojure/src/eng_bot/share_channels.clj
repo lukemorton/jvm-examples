@@ -1,7 +1,15 @@
 (ns eng-bot.share-channels
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :refer [join]]))
+
+(defn- channel-list-message-text
+  [channels]
+  (->> channels
+       (map #(get % :name))
+       (map #(str "#" %))
+       (join ", ")))
 
 (defn exec
   [list-channels post-message]
-  (let [channels (map #(get % :name) (list-channels))]
-    (post-message "eng-test" (str/join ", " channels))))
+  (->> (list-channels)
+       (channel-list-message-text)
+       (post-message "eng-test")))

@@ -33,4 +33,4 @@
 (deftest exec-calls-post-message
   (let [fake-post-message-spy (spy fake-post-message)]
     (sc/exec fake-list-channels fake-post-message-spy)
-    (is (called-with? fake-post-message-spy "eng-test" "eng-general, eng-java, eng-dotnet, eng-ruby"))))
+    (is (called-with? fake-post-message-spy "eng-test" "#eng-general, #eng-java, #eng-dotnet, #eng-ruby"))))
