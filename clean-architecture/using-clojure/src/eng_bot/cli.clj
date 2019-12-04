@@ -3,5 +3,6 @@
   (:gen-class))
 
 (defn -main
-  [& args]
-  (println (factory/list-channels)))
+  [fn-name]
+  (case fn-name
+    "share-channels" (factory/share-channels)))
