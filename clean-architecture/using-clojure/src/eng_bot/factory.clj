@@ -10,8 +10,11 @@
 
 (defn list-channels
   []
-  (list-channels-uc/exec #(channel-gateway/all-channels *slack-connection*)))
+  (list-channels-uc/exec
+    #(channel-gateway/all-channels *slack-connection*)))
 
 (defn share-channels
   []
-  (share-channels-uc/exec list-channels #(post-message-gateway/post-message *slack-connection* %1 %2)))
+  (share-channels-uc/exec
+    list-channels
+    #(post-message-gateway/post-message *slack-connection* %1 %2)))
