@@ -7,5 +7,6 @@
 
 (defn all-channels
   [connection]
-  (let [channels (get (slack-channels/list connection) :channels)]
+  (let [result (slack-channels/list connection {:exclude_archived "true"})
+        channels (get result :channels)]
     (map build-channel-hash channels)))
