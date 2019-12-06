@@ -10,8 +10,8 @@
     routes/slack-channels
     (binding
       [factory/*slack-connection* {:api-url uri :token "test"}]
-      (is (not (empty (get (get (factory/list-channels) 0) :name))))
-      (is (= "eng-general" (get (get (factory/list-channels) 0) :name))))))
+      (is (not (empty (get (first (factory/list-channels)) :name))))
+      (is (= "eng-general" (get (first (factory/list-channels)) :name))))))
 
 (deftest share-channels-posts-list-of-channels
   (stub-http/with-routes!
