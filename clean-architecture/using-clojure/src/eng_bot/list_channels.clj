@@ -11,4 +11,13 @@
 
 (defn exec
   [all-channels]
-  (eng-channels (all-channels)))
+  (let [channels (all-channels)]
+    (if (some #(= "eng-general" (get % :name)) channels)
+      (->> channels
+           (eng-channels)
+           (remove #(= "eng-general" (get % :name)))
+           (sort-by :name)
+           (cons {:name "eng-general"}))
+      (->> channels
+           (eng-channels)
+           (sort-by :name)))))
