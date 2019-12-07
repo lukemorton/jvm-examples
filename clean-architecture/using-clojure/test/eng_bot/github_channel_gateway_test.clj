@@ -21,7 +21,7 @@
 (s/def ::user string?)
 (s/def ::text string?)
 (s/def ::message (s/keys :req-un [::ts ::user ::text]))
-(s/def ::expected-messages (s/coll-of #(s/valid? ::message %) :max-count 100))
+(s/def ::expected-messages (s/coll-of #(s/valid? ::message %) :min-count 100 :max-count 100))
 
 (deftest channel-history-returns-100-messages
   (stub-http/with-routes!
