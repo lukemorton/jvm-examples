@@ -3,7 +3,6 @@
 
 (defn post-message
   [connection channel text]
-  ; {:link_names true}
   (let [options {:icon_emoji ":female-mechanic:"
                  :link_names "true"}
         response (slack-chat/post-message connection channel text options)]
