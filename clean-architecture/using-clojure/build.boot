@@ -7,6 +7,7 @@
                   [cheshire "5.9.0"]
                   [se.haleby/stub-http "0.2.7"]
                   [adzerk/boot-test "1.2.0"]
+                  [expectations/clojure-test "1.1.1"]
                   [tortue/spy "2.0.0"]])
 
 (require '[adzerk.boot-test :as boot-test])

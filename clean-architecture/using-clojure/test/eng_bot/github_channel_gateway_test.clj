@@ -1,11 +1,10 @@
 (ns eng-bot.github-channel-gateway-test
-  (:require [eng-bot.github-channel-gateway :as g]
+  (:require [clojure.test :refer [deftest]]
+            [expectations.clojure.test :refer [expect]]
             [clojure.spec.alpha :as s]
             [stub-http.core :as stub-http]
-            [eng-bot.test-util.spec :refer [is-conforming-to-spec]]
-            [eng-bot.test-util.routes :as routes]))
-
-(use 'clojure.test)
+            [eng-bot.test-util.routes :as routes]
+            [eng-bot.github-channel-gateway :as g]))
 
 (s/def ::name string?)
 (s/def ::channels (s/keys :req-un [::name]))
@@ -15,7 +14,7 @@
   (stub-http/with-routes!
     routes/slack-channels
     (let [channels (g/all-channels {:api-url uri :token "test"})]
-      (is-conforming-to-spec ::expected-channels channels))))
+      (expect ::expected-channels channels))))
 
 (s/def ::ts string?)
 (s/def ::user string?)
@@ -27,4 +26,4 @@
   (stub-http/with-routes!
     routes/slack-channel-history
     (let [messages (g/channel-messages {:api-url uri :token "test"} "eng-general")]
-      (is-conforming-to-spec ::expected-messages messages))))
+      (expect ::expected-messages messages))))
