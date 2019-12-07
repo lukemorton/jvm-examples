@@ -1,6 +1,8 @@
 (ns eng-bot.share-channels-test
   (:require [eng-bot.share-channels :as sc]
-            [spy.core :refer [spy called-with?]]))
+            [clojure.spec.alpha :as s]
+            [spy.core :refer [spy called-once? calls]]
+            [eng-bot.test-util.spec :refer [is-conforming-to-spec]]))
 
 (use 'clojure.test)
 
@@ -28,9 +30,12 @@
 (deftest exec-calls-list-channels
   (let [fake-list-channels-spy (spy fake-list-channels)]
     (sc/exec fake-list-channels-spy fake-post-message)
-    (is (called-with? fake-list-channels-spy))))
+    (is (called-once? fake-list-channels-spy))))
+
+(s/def ::post-message-call (s/cat :channel string? :text string?))
 
 (deftest exec-calls-post-message
   (let [fake-post-message-spy (spy fake-post-message)]
     (sc/exec fake-list-channels fake-post-message-spy)
-    (is (called-with? fake-post-message-spy "eng-test" "#eng-general, #eng-java, #eng-dotnet, #eng-ruby"))))
+    (is (called-once? fake-post-message-spy))
+    (is-conforming-to-spec ::post-message-call (first (calls fake-post-message-spy)))))
