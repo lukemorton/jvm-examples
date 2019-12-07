@@ -8,6 +8,7 @@
 (deftest all-channels-returns-list
   (stub-http/with-routes!
     routes/slack-channels
-    (is (not (empty? (g/all-channels {:api-url uri :token "test"}))))
-    (is (= 2 (count (g/all-channels {:api-url uri :token "test"}))))
-    (is (= "announcements" (get (first (g/all-channels {:api-url uri :token "test"})) :name)))))
+    (let [channels (g/all-channels {:api-url uri :token "test"})]
+      (is (seq channels))
+      (is (= 2 (count channels)))
+      (is (= "announcements" (get (first channels) :name))))))
