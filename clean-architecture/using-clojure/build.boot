@@ -1,7 +1,7 @@
 (set-env!
   :resource-paths #{"src"}
   :source-paths #{"test"}
-  :dependencies '[[org.clojure/clojure "1.8.0"]
+  :dependencies '[[org.clojure/clojure "1.10.1"]
                   [lynxeyes/dotenv "1.0.2"]
                   [org.julienxx/clj-slack "0.6.3"]
                   [cheshire "5.9.0"]
