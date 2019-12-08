@@ -8,8 +8,8 @@
    :body (json/generate-string {:ok true :channels channels})})
 
 (def slack-channels
-  {"/channels.list" (mocked-slack-channels [{:name_normalized "announcements"}
-                                            {:name_normalized "eng-general"}])})
+  {"/channels.list" (mocked-slack-channels [{:id "C0001" :name_normalized "announcements"}
+                                            {:id "C0002" :name_normalized "eng-general"}])})
 
 (def slack-channel-messages
   (vec (replicate 100 {:ts "1358546515.000007"
