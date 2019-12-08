@@ -4,9 +4,10 @@
             [clojure.spec.alpha :as s]
             [stub-http.core :as stub-http]
             [eng-bot.test-util.routes :as routes]
-            [eng-bot.github-channel-gateway :as g]))
+            [eng-bot.github-channel-gateway :as g]
+            [eng-bot.channels :as c]))
 
-(s/def ::expected-channels (s/coll-of #(s/valid? ::g/channels %) :min-count 2 :max-count 2))
+(s/def ::expected-channels (s/coll-of #(s/valid? ::c/channel %) :min-count 2 :max-count 2))
 
 (deftest all-channels-test
   (expecting "sends single GET request to Slack"
@@ -22,7 +23,7 @@
       (let [channels (g/all-channels {:api-url uri :token "test"})]
         (expect ::expected-channels channels)))))
 
-(s/def ::expected-messages (s/coll-of #(s/valid? ::g/message %) :min-count 100 :max-count 100))
+(s/def ::expected-messages (s/coll-of #(s/valid? ::c/message %) :min-count 100 :max-count 100))
 
 (deftest channel-messages-test
   (expecting "sends single GET request to Slack"
