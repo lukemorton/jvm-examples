@@ -1,8 +1,21 @@
 (ns eng-bot.factory-test
-  (:require [clojure.test :refer [deftest]]
-            [expectations.clojure.test :refer [expect]]
-            [clojure.string :as str]
+  (:require [clojure.test :refer [deftest function?]]
+            [expectations.clojure.test :refer [expect expecting more->]]
+            [dotenv :refer [env]]
             [eng-bot.factory :as factory]))
 
-(deftest slack-connection-config-loaded-from-dotenv
-  (expect ::factory/slack-connection factory/*slack-connection*))
+(deftest slack-connection-test
+  (expecting "config to conform to spec"
+    (expect ::factory/slack-connection factory/*slack-connection*))
+  (expecting "config to be loaded from dotenv"
+    (expect (more-> (env "SLACK_URL") :api-url
+                    (env "SLACK_TOKEN") :token)
+      factory/*slack-connection*)))
+
+(deftest list-channels-test
+  (expecting "to be defined"
+    (expect function? factory/list-channels)))
+
+(deftest share-channels-test
+  (expecting "to be defined"
+    (expect function? factory/share-channels)))
