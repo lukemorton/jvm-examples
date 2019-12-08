@@ -4,11 +4,11 @@
   :dependencies '[[org.clojure/clojure "1.10.1"]
                   [lynxeyes/dotenv "1.0.2"]
                   [org.julienxx/clj-slack "0.6.3"]
-                  [cheshire "5.9.0"]
-                  [se.haleby/stub-http "0.2.7"]
+                  [cheshire "5.9.0" :scope "test"]
+                  [se.haleby/stub-http "0.2.7" :scope "test"]
+                  [expectations/clojure-test "1.1.1" :scope "test"]
+                  [tortue/spy "2.0.0" :scope "test"]
                   [adzerk/boot-test "1.2.0"]
-                  [expectations/clojure-test "1.1.1"]
-                  [tortue/spy "2.0.0"]])
 
 (require '[adzerk.boot-test :as boot-test])
 
