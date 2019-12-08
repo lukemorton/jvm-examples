@@ -5,9 +5,9 @@
             [stub-http.core :as stub-http]
             [clojure.spec.alpha :as s]
             [eng-bot.factory :as factory]
-            [eng-bot.github-channel-gateway :as g]))
+            [eng-bot.channels :as c]))
 
-(s/def ::expected-channels (s/coll-of #(s/valid? ::g/channels %) :min-count 1 :max-count 1))
+(s/def ::expected-channels (s/coll-of #(s/valid? ::c/channel %) :min-count 1 :max-count 1))
 
 (deftest acceptance-test
   (expecting "listing channels returns conforming list of channels"

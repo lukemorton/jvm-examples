@@ -1,10 +1,11 @@
 (ns eng-bot.share-channels
-  (:require [clojure.string :refer [join]]))
+  (:require [clojure.string :refer [join]]
+            [eng-bot.channels :as c]))
 
 (defn- channel-list-text
   [channels]
   (->> channels
-       (map #(get % :name))
+       (map #(get % ::c/name))
        (map #(str "#" %))
        (join ", ")))
 

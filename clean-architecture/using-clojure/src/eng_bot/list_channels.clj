@@ -1,9 +1,10 @@
 (ns eng-bot.list-channels
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [eng-bot.channels :as c]))
 
 (defn- eng-channel?
   [channel]
-  (str/starts-with? (get channel :name) "eng-"))
+  (str/starts-with? (get channel ::c/name) "eng-"))
 
 (defn- eng-channels
   [channels]
@@ -12,12 +13,14 @@
 (defn exec
   [all-channels]
   (let [channels (all-channels)]
-    (if (some #(= "eng-general" (get % :name)) channels)
+    (if (some #(= "eng-general" (get % ::c/name)) channels)
+      (let [eng-general (first (filter #(= "eng-general" (get % ::c/name)) channels))]
+        (println eng-general)
+        (->> channels
+             (eng-channels)
+             (remove #(= "eng-general" (get % ::c/name)))
+             (sort-by ::c/name)
+             (cons eng-general)))
       (->> channels
            (eng-channels)
-           (remove #(= "eng-general" (get % :name)))
-           (sort-by :name)
-           (cons {:name "eng-general"}))
-      (->> channels
-           (eng-channels)
-           (sort-by :name)))))
+           (sort-by ::c/name)))))

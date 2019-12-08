@@ -1,9 +1,11 @@
 (ns eng-bot.github-channel-gateway
-  (:require [clj-slack.channels :as slack-channels]))
+  (:require [clj-slack.channels :as slack-channels]
+            [eng-bot.channels :as c]))
 
 (defn- build-channel-hash
   [channel]
-  {:name (get channel :name_normalized)})
+  {::c/id (get channel :id)
+   ::c/name (get channel :name_normalized)})
 
 (defn all-channels
   [connection]
@@ -13,10 +15,13 @@
 
 (defn- build-message-hash
   [message]
-  (select-keys message [:ts :user :text]))
+  {::c/ts (get message :ts)
+   ::c/user (get message :user)
+   ::c/text (get message :text)})
 
 (defn channel-messages
   [connection channel]
-  (let [result (slack-channels/history connection channel)
-        messages (get result :messages)]
-    (map build-message-hash messages)))
+  (let [result (slack-channels/history connection channel)]
+    (if (get result :ok)
+      (map build-message-hash (get result :messages))
+      (throw (ex-info "Error finding Slack channel history" result)))))
