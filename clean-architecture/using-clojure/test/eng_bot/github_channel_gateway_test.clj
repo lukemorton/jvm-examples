@@ -6,9 +6,7 @@
             [eng-bot.test-util.routes :as routes]
             [eng-bot.github-channel-gateway :as g]))
 
-(s/def ::name string?)
-(s/def ::channels (s/keys :req-un [::name]))
-(s/def ::expected-channels (s/coll-of #(s/valid? ::channels %) :min-count 2 :max-count 2))
+(s/def ::expected-channels (s/coll-of #(s/valid? ::g/channels %) :min-count 2 :max-count 2))
 
 (deftest all-channels-returns-list
   (stub-http/with-routes!
@@ -16,11 +14,7 @@
     (let [channels (g/all-channels {:api-url uri :token "test"})]
       (expect ::expected-channels channels))))
 
-(s/def ::ts string?)
-(s/def ::user string?)
-(s/def ::text string?)
-(s/def ::message (s/keys :req-un [::ts ::user ::text]))
-(s/def ::expected-messages (s/coll-of #(s/valid? ::message %) :min-count 100 :max-count 100))
+(s/def ::expected-messages (s/coll-of #(s/valid? ::g/message %) :min-count 100 :max-count 100))
 
 (deftest channel-history-returns-100-messages
   (stub-http/with-routes!
