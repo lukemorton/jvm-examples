@@ -5,5 +5,4 @@
             [eng-bot.factory :as factory]))
 
 (deftest slack-connection-config-loaded-from-dotenv
-  (expect not (str/blank? (get factory/*slack-connection* :api-url)))
-  (expect not (str/blank? (get factory/*slack-connection* :token))))
+  (expect ::factory/slack-connection factory/*slack-connection*))

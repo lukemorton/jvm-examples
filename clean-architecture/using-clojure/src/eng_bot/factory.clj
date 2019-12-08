@@ -3,7 +3,13 @@
             [eng-bot.list-channels :as list-channels-uc]
             [eng-bot.share-channels :as share-channels-uc]
             [eng-bot.github-channel-gateway :as channel-gateway]
-            [eng-bot.github-post-message-gateway :as post-message-gateway]))
+            [eng-bot.github-post-message-gateway :as post-message-gateway]
+            [clojure.spec.alpha :as s]
+            [clojure.string :as str]))
+
+(s/def ::api-url (s/and string? #(not (str/blank? %))))
+(s/def ::token (s/and string? #(not (str/blank? %))))
+(s/def ::slack-connection (s/keys :req-un [::api-url ::token]))
 
 (def ^:dynamic *slack-connection* {:api-url (env :SLACK_URL)
                                    :token (env :SLACK_TOKEN)})
