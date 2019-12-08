@@ -1,7 +1,7 @@
 (ns eng-bot.list-channels-test
   (:require [clojure.test :refer [deftest]]
             [expectations.clojure.test :refer [expecting expect]]
-            [eng-bot.list-channels :as lc]))
+            [eng-bot.list-channels :as list-channels]))
 
 (defn- fake-empty-gateway
   []
@@ -19,13 +19,13 @@
 
 (deftest exec-test
   (expecting "returns empty list from empty gateway"
-    (expect empty? (lc/exec fake-empty-gateway)))
+    (expect empty? (list-channels/exec fake-empty-gateway)))
 
   (expecting "returns list from none empty gateway"
-    (expect seq (lc/exec fake-gateway)))
+    (expect seq (list-channels/exec fake-gateway)))
 
   (expecting "returns only engineering channels"
-    (let [channel-names (map #(get % :name) (lc/exec fake-gateway))]
+    (let [channel-names (map #(get % :name) (list-channels/exec fake-gateway))]
       (expect "eng-general" (in channel-names))
       (expect "eng-java" (in channel-names))
       (expect "eng-dotnet" (in channel-names))
@@ -34,7 +34,7 @@
       (expect nil? (some #{"team-sales"} channel-names))))
 
   (expecting "returns channels sorted by general first and then alphabetical"
-    (let [channel-names (mapv #(get % :name) (lc/exec fake-gateway))]
+    (let [channel-names (mapv #(get % :name) (list-channels/exec fake-gateway))]
       (expect "eng-general" (get channel-names 0))
       (expect "eng-dotnet" (get channel-names 1))
       (expect "eng-java" (get channel-names 2))
