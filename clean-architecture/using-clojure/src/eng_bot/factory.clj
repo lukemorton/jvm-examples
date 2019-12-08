@@ -30,4 +30,5 @@
   []
   (share-channels-uc/exec
     list-channels
+    identify-hottest-channels
     #(post-message-gateway/post-message *slack-connection* %1 %2)))

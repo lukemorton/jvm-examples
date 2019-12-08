@@ -28,5 +28,5 @@
                         :content-type "application/json"
                         :body (json/generate-string {:ok true})}})
 
-(def slack-channels-and-post-message
-  (merge slack-channels slack-post-message))
+(def slack-channels-history-and-post-message
+  (merge slack-channels slack-channel-history slack-post-message))

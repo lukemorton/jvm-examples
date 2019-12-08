@@ -19,7 +19,9 @@
 
   (expecting "sharing channels posts list of channels to Slack"
     (stub-http/with-routes!
-      routes/slack-channels-and-post-message
+      routes/slack-channels-history-and-post-message
       (binding
         [factory/*slack-connection* {:api-url uri :token "test"}]
         (expect true (factory/share-channels))))))
+
+(factory/share-channels)
