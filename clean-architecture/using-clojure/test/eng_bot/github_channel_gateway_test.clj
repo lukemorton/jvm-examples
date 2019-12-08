@@ -8,7 +8,7 @@
 
 (s/def ::expected-channels (s/coll-of #(s/valid? ::g/channels %) :min-count 2 :max-count 2))
 
-(deftest all-channels-returns-list
+(deftest all-channels-test
   (stub-http/with-routes!
     routes/slack-channels
     (let [channels (g/all-channels {:api-url uri :token "test"})]
@@ -16,7 +16,7 @@
 
 (s/def ::expected-messages (s/coll-of #(s/valid? ::g/message %) :min-count 100 :max-count 100))
 
-(deftest channel-history-returns-100-messages
+(deftest channel-messages-test
   (stub-http/with-routes!
     routes/slack-channel-history
     (let [messages (g/channel-messages {:api-url uri :token "test"} "eng-general")]
