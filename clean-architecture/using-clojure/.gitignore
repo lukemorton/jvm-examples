@@ -1,3 +1,6 @@
 .env*
 target
 .nrepl-port
+project.clj
+/boot-project.iml
+.idea

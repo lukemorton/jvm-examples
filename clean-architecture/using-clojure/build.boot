@@ -9,8 +9,12 @@
                   [expectations/clojure-test "1.1.1" :scope "test"]
                   [tortue/spy "2.0.0" :scope "test"]
                   [adzerk/boot-test "1.2.0"]
+                  [onetom/boot-lein-generate "0.1.3" :scope "test"]])
 
 (require '[adzerk.boot-test :as boot-test])
+
+(require 'boot.lein)
+(boot.lein/generate)
 
 (deftask build-cli
   "Build CLI delivery mechanism"
