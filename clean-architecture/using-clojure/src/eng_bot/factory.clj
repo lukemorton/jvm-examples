@@ -1,6 +1,7 @@
 (ns eng-bot.factory
   (:require [dotenv :refer [env]]
             [eng-bot.list-channels :as list-channels-uc]
+            [eng-bot.identify-hottest-channels :as identify-hottest-channels-uc]
             [eng-bot.share-channels :as share-channels-uc]
             [eng-bot.github-channel-gateway :as channel-gateway]
             [eng-bot.github-post-message-gateway :as post-message-gateway]
@@ -18,6 +19,12 @@
   []
   (list-channels-uc/exec
     #(channel-gateway/all-channels *slack-connection*)))
+
+(defn identify-hottest-channels
+  []
+  (identify-hottest-channels-uc/exec
+    list-channels
+    #(channel-gateway/channel-messages *slack-connection* %)))
 
 (defn share-channels
   []

@@ -16,6 +16,10 @@
   (expecting "to be defined"
     (expect function? factory/list-channels)))
 
+(deftest identify-hottest-channels-test
+  (expecting "to be defined"
+    (expect function? factory/identify-hottest-channels)))
+
 (deftest share-channels-test
   (expecting "to be defined"
     (expect function? factory/share-channels)))
