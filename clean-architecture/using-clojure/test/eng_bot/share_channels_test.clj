@@ -1,6 +1,6 @@
 (ns eng-bot.share-channels-test
   (:require [clojure.test :refer [deftest]]
-            [expectations.clojure.test :refer [expect expecting]]
+            [expectations.clojure.test :refer [expecting expect]]
             [clojure.spec.alpha :as s]
             [spy.core :refer [spy called-once? calls]]
             [eng-bot.share-channels :as sc]))

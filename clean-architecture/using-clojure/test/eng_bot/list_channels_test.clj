@@ -1,6 +1,6 @@
 (ns eng-bot.list-channels-test
   (:require [clojure.test :refer [deftest]]
-            [expectations.clojure.test :refer [expect expecting]]
+            [expectations.clojure.test :refer [expecting expect]]
             [eng-bot.list-channels :as lc]))
 
 (defn- fake-empty-gateway

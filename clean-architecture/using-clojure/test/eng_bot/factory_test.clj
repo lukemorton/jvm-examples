@@ -1,6 +1,6 @@
 (ns eng-bot.factory-test
   (:require [clojure.test :refer [deftest function?]]
-            [expectations.clojure.test :refer [expect expecting more->]]
+            [expectations.clojure.test :refer [expecting expect more->]]
             [dotenv :refer [env]]
             [eng-bot.factory :as factory]))
 
