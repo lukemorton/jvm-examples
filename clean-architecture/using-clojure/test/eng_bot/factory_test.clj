@@ -12,6 +12,10 @@
                     (env "SLACK_TOKEN") :token)
       factory/*slack-connection*)))
 
+(deftest slack-channel-test
+  (expecting "config to be loaded from dotenv"
+    (expect (env "SLACK_CHANNEL") factory/slack-channel)))
+
 (deftest list-channels-test
   (expecting "to be defined"
     (expect function? factory/list-channels)))

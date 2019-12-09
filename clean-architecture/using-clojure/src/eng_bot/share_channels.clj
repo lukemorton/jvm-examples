@@ -29,4 +29,4 @@
 (defn exec
   [list-channels identify-hottest-channels post-message]
   (->> (message-text (list-channels) (identify-hottest-channels))
-       (post-message "eng-test")))
+       (post-message)))

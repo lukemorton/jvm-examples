@@ -23,10 +23,10 @@
    {:name "eng-ruby" :recent-message-count 12}])
 
 (defn- fake-post-message
-  [channel text]
+  [text]
   true)
 
-(s/def ::post-message-call (s/cat :channel string? :text string?))
+(s/def ::post-message-call (s/cat :text string?))
 
 (deftest exec-test
   (expecting "returns true on success"

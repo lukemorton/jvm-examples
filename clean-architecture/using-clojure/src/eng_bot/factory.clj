@@ -15,6 +15,8 @@
 (def ^:dynamic *slack-connection* {:api-url (env :SLACK_URL)
                                    :token (env :SLACK_TOKEN)})
 
+(def slack-channel (env :SLACK_CHANNEL))
+
 (defn list-channels
   []
   (list-channels-uc/exec
@@ -31,4 +33,4 @@
   (share-channels-uc/exec
     list-channels
     identify-hottest-channels
-    #(post-message-gateway/post-message *slack-connection* %1 %2)))
+    #(post-message-gateway/post-message *slack-connection* slack-channel %)))
