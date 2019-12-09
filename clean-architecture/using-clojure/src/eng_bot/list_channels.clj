@@ -15,7 +15,6 @@
   (let [channels (all-channels)]
     (if (some #(= "eng-general" (get % ::c/name)) channels)
       (let [eng-general (first (filter #(= "eng-general" (get % ::c/name)) channels))]
-        (println eng-general)
         (->> channels
              (eng-channels)
              (remove #(= "eng-general" (get % ::c/name)))
