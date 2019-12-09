@@ -24,4 +24,3 @@
         [factory/*slack-connection* {:api-url uri :token "test"}]
         (expect true (factory/share-channels))))))
 
-(factory/share-channels)
