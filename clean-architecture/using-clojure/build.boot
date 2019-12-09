@@ -4,6 +4,7 @@
   :dependencies '[[org.clojure/clojure "1.10.1"]
                   [lynxeyes/dotenv "1.0.2"]
                   [org.julienxx/clj-slack "0.6.3"]
+                  [clj-time "0.15.2"]
                   [cheshire "5.9.0" :scope "test"]
                   [se.haleby/stub-http "0.2.7" :scope "test"]
                   [expectations/clojure-test "1.1.1" :scope "test"]
