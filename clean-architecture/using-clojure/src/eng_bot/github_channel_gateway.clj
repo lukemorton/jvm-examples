@@ -19,9 +19,9 @@
    ::c/user (get message :user)
    ::c/text (get message :text)})
 
-(defn channel-messages
-  [connection channel]
-  (let [result (slack-channels/history connection channel)]
+(defn channel-messages-since
+  [connection channel since-ts]
+  (let [result (slack-channels/history connection channel {:oldest since-ts})]
     (if (get result :ok)
       (map build-message-hash (get result :messages))
       (throw (ex-info "Error finding Slack channel history" result)))))

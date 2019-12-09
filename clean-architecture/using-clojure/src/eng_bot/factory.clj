@@ -24,7 +24,7 @@
   []
   (identify-hottest-channels-uc/exec
     list-channels
-    #(channel-gateway/channel-messages *slack-connection* %)))
+    #(channel-gateway/channel-messages-since *slack-connection* %1 %2)))
 
 (defn share-channels
   []

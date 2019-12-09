@@ -25,16 +25,16 @@
 
 (s/def ::expected-messages (s/coll-of #(s/valid? ::c/message %) :min-count 100 :max-count 100))
 
-(deftest channel-messages-test
+(deftest channel-messages-since-test
   (expecting "sends single GET request to Slack"
     (stub-http/with-routes!
       routes/slack-channel-history
-      (g/channel-messages {:api-url uri :token "test"} "eng-general")
+      (g/channel-messages-since {:api-url uri :token "test"} "eng-general" "1575244800.000000")
       (expect 1 (count (stub-http/recorded-requests server)))
       (expect "GET" (:method (first (stub-http/recorded-requests server))))))
 
   (expecting "messages to conform to spec"
     (stub-http/with-routes!
       routes/slack-channel-history
-      (let [messages (g/channel-messages {:api-url uri :token "test"} "eng-general")]
+      (let [messages (g/channel-messages-since {:api-url uri :token "test"} "eng-general" "1575244800.000000")]
         (expect ::expected-messages messages)))))
